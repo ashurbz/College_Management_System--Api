@@ -3,7 +3,7 @@ const app = express();
 const db = require('./config/mongoose');
 const port=process.env.PORT||8000;
 
-app.use(express.urlencoded());
+
 
 app.get('/',(req,res)=>{
     res.send ("hiii")
