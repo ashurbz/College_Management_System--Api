@@ -1,13 +1,16 @@
+const { urlencoded } = require('body-parser');
 const express = require('express');
 const app = express();
 const db = require('./config/mongoose');
 const port=process.env.PORT||8000;
 
+app.use(express.json());
 
 
-app.get('/',(req,res)=>{
-    res.send ("hiii")
-})
+
+
+
+app.use('/',require('./routes'));
 
 
 
