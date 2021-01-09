@@ -4,8 +4,9 @@ const connection = require('../config/mongoose');
 const autoIncrement = require('mongoose-auto-increment');
 
 autoIncrement.initialize(connection);
-
-
+const multer = require('multer');
+const path = require('path');
+const PDF_PATH = path.join('/assignments');
 const schema=new mongoose.Schema({
     email:{
         type:String,
@@ -27,12 +28,27 @@ const schema=new mongoose.Schema({
         
      },
      assignmentSubmitted:{
-         type:Array,
-        
-     }
+         type:Array
+         
+    },
+     
 },{
     timestamps:true
 })
+
+
+var storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, path.join(__dirname,'..',PDF_PATH));
+    },
+    filename: function (req, file, cb) {
+      cb(null, file.fieldname + '-' + Date.now())
+    }
+  });
+
+  //static functions
+  schema.statics.uploadedAvatar = multer({ storage: storage }).single('avatar');
+  schema.statics.avatarPath = PDF_PATH;
 
 schema.plugin(autoIncrement.plugin, { model: 'student', field: 'rollNo' });
 
