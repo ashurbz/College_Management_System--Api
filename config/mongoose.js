@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');  // requiring mongoose
-mongoose.connect('mongodb://localhost/CMS');  
-// mongoose.connect("mongodb+srv://ashurbz:ashu3489@cluster0.3zktz.gcp.mongodb.net/CMS?retryWrites=true&w=majority");// establishing connection
+// mongoose.connect('mongodb://localhost/CMS');  
+ mongoose.connect("mongodb+srv://ashurbz:ashu3489@cluster0.3zktz.gcp.mongodb.net/CMS?retryWrites=true&w=majority");// establishing connection
 
 const db = mongoose.connection;   // if connection succesfull
 
