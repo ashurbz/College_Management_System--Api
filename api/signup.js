@@ -21,14 +21,13 @@ const signUp = async function (req, res) {
           return res.json(409, {
             message: "User already exists",
           });   
-      } else {
+      } else { 
         await Student.create(req.body);
         return res.json(200, {
           message: "Registered Successfully",
         });
       }
     }
-
  else  if (req.body.role == "teacher") {
       const teacher = await Teacher.findOne({ email: req.body.email });
       const student = await Student.findOne({ email: req.body.email });

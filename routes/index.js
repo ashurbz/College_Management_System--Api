@@ -4,6 +4,7 @@ const router = express.Router();
 const signup = require('../api/signup');
 const signin = require('../api/signin');
 const info = require('../api/info');
+const cors = require('cors');
 const {upload} =require("../api/upload")
 // const passport=require("../config/passport-jwt")
  
