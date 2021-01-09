@@ -59,6 +59,7 @@ const signUp = async function (req, res) {
   } catch (err) {
     console.log(err);
     return res.json(404, {
+      err:err,
       message: "err in register ",
     });
   }
