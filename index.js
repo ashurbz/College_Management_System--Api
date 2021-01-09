@@ -10,6 +10,11 @@ const passport = require('passport');
 var bodyParser = require('body-parser');
 const {upload} =require("./api/upload")
 const path =require("path")
+
+const cors = require('cors');
+app.use(cors());
+
+
 // app.use(bodyParser.json());
 // app.use(bodyParser.urlencoded());  
 // in latest body-parser use like below.
