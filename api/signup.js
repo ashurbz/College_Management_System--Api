@@ -11,6 +11,7 @@ const signUp = async function (req, res) {
         const student = await Student.findOne({ email: req.body.email });
         if (teacher) {
           return res.json(409, {
+            status:409,
             message: "User already exists",
           });
   
@@ -19,6 +20,7 @@ const signUp = async function (req, res) {
        
         else if (student) {
           return res.json(409, {
+            status:409,
             message: "User already exists",
           });   
       } else { 
