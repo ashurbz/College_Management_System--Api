@@ -16,7 +16,7 @@ const signin= async function(req, res){
         return res.json(200,{
             message: 'Sign in successfull',
             data:  {
-                token: jwt.sign(student.toJSON(), 'ptwmjgad', {expiresIn:  '1000*60*60*24'}),
+                token: jwt.sign(student.toJSON(), 'ptwmjgad', {expiresIn:  1000*60*60*24}),
                 name: student.name,
                 role:"student",
                 email:student.email
@@ -34,7 +34,7 @@ const signin= async function(req, res){
         return res.json(200,{
             message: 'Sign in successfull',
             data:  {
-                token: jwt.sign(teacher.toJSON(), 'ptwmjgad', {expiresIn:  '1000*60*60*24'}),
+                token: jwt.sign(teacher.toJSON(), 'ptwmjgad', {expiresIn:  1000*60*60*24}),
                 name: teacher.name,
                 role:"teacher",
                 email:teacher.email

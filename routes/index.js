@@ -6,7 +6,7 @@ const signin = require('../api/signin');
 const info = require('../api/info');
 const {upload} =require("../api/upload")
 
-router.get('/',)
+// router.get('/')
 
 // const passport=require("../config/passport-jwt")
 router.post('/signup',signup);
