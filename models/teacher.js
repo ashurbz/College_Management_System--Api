@@ -48,12 +48,15 @@ var storage = multer.diskStorage({
       cb(null, path.join(__dirname,'..',PDF_PATH));
     },
     filename: function (req, file, cb) {
-      cb(null, file.fieldname + '-' + Date.now())
+      const  name=Date.now()+file.originalname;
+      cb(null, name)
+       return name;
     }
   });
 
   //static functions
   schema.statics.uploadedAvatar = multer({ storage: storage }).single('avatar');
+
   schema.statics.avatarPath = PDF_PATH;
   
 schema.plugin(autoIncrement.plugin, { model: 'Teacher', field: 'empId' });

@@ -12,6 +12,8 @@ const {upload} =require("./api/upload")
 const path =require("path")
 
 const cors = require('cors');
+app.use(express.static(path.join(__dirname, '/assignments')));
+app.use(express.static(path.join(__dirname, '/submissions')));
 app.use(cors());
 
 
@@ -22,7 +24,7 @@ app.use(cors());
 // app.use(formData.union());
 app.use(bodyParser.json({ limit: '100mb' }));
 app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
-// app.use(express.static(path.join(__dirname, 'public')));
+
 
 
 
