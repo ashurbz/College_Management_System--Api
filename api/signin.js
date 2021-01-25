@@ -5,7 +5,11 @@ const jwt = require('jsonwebtoken');
 
 const signin= async function(req, res){
     try{
-    
+        if(req.body.email){
+
+            req.body.email=req.body.email.toLowerCase();
+            
+        }
         let student = await Student.findOne({email: req.body.email},{});
         if(student){
         if(!student || student.password!= req.body.password){
@@ -19,7 +23,8 @@ const signin= async function(req, res){
                 token: jwt.sign(student.toJSON(), 'ptwmjgad', {expiresIn:  1000*60*60*24}),
                 name: student.name,
                 role:"student",
-                email:student.email
+                email:student.email,
+                roll:student.rollNo
             }
         }
         )

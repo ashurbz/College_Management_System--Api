@@ -5,16 +5,26 @@ const jwt = require('jsonwebtoken');
 
 const info= async function(req, res){
     try{
-    
-        let student = await Student.findOne({email: req.body.email});
+        
+        let student = await Student.findOne({email: req.user.email});
+       
         if(student)
          {
-        let {name,email,rollNo,assignmentSubmitted,role}=student;
+          let  assignmentSubmitted = student.assignmentSubmitted.filter((v)=>{ 
+          return    v.teacher==req.query.email?true:false
 
-        if(!student || student.password!= req.body.password){
+           })
+        let {name,email,rollNo,role}=student;
+
+      
+      
+       
+        let teacher = await Teacher.findOne({email: req.query.email});
+
+        if(!student || student.password!= req.user.password){
             return res.json(401,{
                 message: "Invalid Token"
-            });
+            }); 
         }
         return res.json(200,{
             message: 'Success',
@@ -23,17 +33,19 @@ const info= async function(req, res){
                email,
                rollNo,
                assignmentSubmitted,
-               role
+               role,
+               assignmentGiven:teacher.assignmentGiven
             
             
             }
         })}
-        // naughty fications count aa rahi hai bas
 
-        let teacher = await Teacher.findOne({email: req.body.email});
+      
+        let teacher = await Teacher.findOne({email: req.user.email});
+      
         let {name,email,empId,assignmentGiven,role}=teacher;
 
-        if(!teacher || teacher.password!= req.body.password){
+        if(!teacher || teacher.password!= req.user.password){
             return res.json(401,{
                 message: "Invalid Token"
             });
