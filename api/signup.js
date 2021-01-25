@@ -5,6 +5,9 @@ const signUp = async function (req, res) {
   console.log(req.body.name);
   try {
     //if email already exist
+    if(req.body.email){
+      req.body.email=req.body.email.toLowerCase();
+    }
 
     if (req.body.role == "student") {
         const teacher = await Teacher.findOne({ email: req.body.email });
